@@ -1,0 +1,38 @@
+<mat-card
+  [class.disabled]="!stock.isEnabled"
+  [class.positive]="stock.priceChange > 0"
+  [class.negative]="stock.priceChange < 0"
+>
+  <mat-card-header>
+    <mat-card-title>{{ stock.symbol }}</mat-card-title>
+    <mat-card-subtitle>{{ stock.name }}</mat-card-subtitle>
+
+    <mat-slide-toggle
+      [checked]="stock.isEnabled"
+      (change)="onToggle()"
+      [aria-label]="'Toggle ' + stock.name + ' stock updates'">
+    </mat-slide-toggle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="price-info">
+      <div class="current-price">
+        ${{ stock.currentPrice | number:'1.2-2' }}
+        <span class="change">
+          {{ stock.priceChange > 0 ? '+' : ''}}{{ stock.priceChange | number:'1.2-2' }}
+          ({{ getPercentChange(stock.currentPrice, stock.priceChange) | number:'1.2-2' }}%)
+        </span>
+      </div>
+
+      <div class="daily">
+        <div>Daily High: ${{ stock.dailyHigh | number:'1.2-2' }}</div>
+        <div>Daily Low: ${{ stock.dailyLow | number:'1.2-2' }}</div>
+      </div>
+
+      <div class="desktop-content">
+        <span>52W High: ${{ stock.yearlyHigh | number:'1.2-2'}}</span>
+        <span>52W Low: ${{ stock.yearlyLow | number:'1.2-2'}}</span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

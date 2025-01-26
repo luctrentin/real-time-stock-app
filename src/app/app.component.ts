@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { StockListComponent } from './shared/components/stock-list/stock-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [StockListComponent],
+  template: `
+    <main class="app-container">
+      <app-stock-list />
+    </main>
+  `,
+  styles: [`
+    .app-container {
+      padding: 1rem;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+    }
+  `]
 })
-export class AppComponent {
-  title = 'real-time-stock-app';
-}
+export class AppComponent {}

@@ -1,0 +1,7 @@
+<div class="stock-list">
+  <app-stock-card
+    *ngFor="let stock of stocks$ | async"
+    [stock]="stock"
+    (toggleEnabled)="onToggleStock($event)">
+  </app-stock-card>
+</div>
